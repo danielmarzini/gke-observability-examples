@@ -1,0 +1,14 @@
+apiVersion: monitoring.googleapis.com/v1
+kind: Rules
+metadata:
+  name: example-rules
+  namespace: monitoring
+spec:
+  groups:
+  - name: example
+    interval: 30s
+    rules:
+    - record: job:up:sum
+      expr: sum without(instance) (up)
+    - alert: AlwaysFiring
+      expr: vector(1)
